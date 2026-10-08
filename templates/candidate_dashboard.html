@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Candidate Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<h1>Candidate Dashboard</h1>
+<h3>Welcome {{ candidate.name }}</h3>
+<p>Email: {{ candidate.email }}</p>
+<p>Phone: {{ candidate.phone }}</p>
+
+<a href="/candidate/apply" class="button">Apply For Job</a>
+
+<h2>My Applications</h2>
+<table>
+<tr><th>Job</th><th>Score</th><th>Status</th><th>Date</th></tr>
+{% for application in applications %}
+<tr>
+<td>{{ application.job }}</td>
+<td>{{ application.score }}%</td>
+<td>{{ application.status }}</td>
+<td>{{ application.applied_date }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+<a href="/logout">Logout</a>
+</div>
+</body>
+</html>

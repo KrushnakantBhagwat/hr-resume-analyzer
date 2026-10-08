@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HR Statistics</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>HR Recruitment Statistics</h1>
+
+<div class="cards">
+<div class="card"><h2>{{ total }}</h2><p>Total Candidates</p></div>
+<div class="card"><h2>{{ selected }}</h2><p>Total Selected</p></div>
+<div class="card"><h2>{{ pending }}</h2><p>Pending Applications</p></div>
+<div class="card"><h2>{{ monthly_selected }}</h2><p>Selected This Month</p></div>
+</div>
+
+<h2>Candidate Selection Graph</h2>
+<canvas id="myChart"></canvas>
+
+<script>
+const ctx = document.getElementById('myChart');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+            "Total Candidates",
+            "Selected",
+            "Pending",
+            "Selected This Month"
+        ],
+        datasets: [{
+            label: "Candidates",
+            data: [
+                {{ total }},
+                {{ selected }},
+                {{ pending }},
+                {{ monthly_selected }}
+            ]
+        }]
+    }
+});
+</script>
+
+<br>
+<a href="/hr/dashboard">Back to HR Dashboard</a>
+</div>
+</body>
+</html>

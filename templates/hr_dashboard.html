@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<h1>HR Dashboard</h1>
+<a href="/statistics" class="button">View Statistics</a>
+<a href="/logout" class="button">Logout</a>
+
+<h2>Candidate Applications</h2>
+<table>
+<tr>
+<th>Name</th><th>Email</th><th>Phone</th><th>Job</th>
+<th>Resume</th><th>Score</th><th>Status</th><th>Action</th>
+</tr>
+
+{% for application in applications %}
+<tr>
+<td>{{ application.name }}</td>
+<td>{{ application.email }}</td>
+<td>{{ application.phone }}</td>
+<td>{{ application.job }}</td>
+<td>
+{% if application.resume %}
+<a href="/resume/{{ application.resume }}">View Resume</a>
+{% else %}
+No Resume
+{% endif %}
+</td>
+<td>{{ application.score }}%</td>
+<td>{{ application.status }}</td>
+<td>
+{% if application.status == "Pending" %}
+<a href="/hire/{{ application.id }}">Hire Candidate</a>
+{% else %}
+Selected
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+</body>
+</html>
